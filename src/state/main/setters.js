@@ -13,6 +13,14 @@ const setters = {
             return {players: prevState.players.filter(player => player.id !== playerID)}
         })
     },
+
+    toggleSelectedLevel(level){
+        this.setState(prevState => {
+            return prevState.selectedLevel?.name === level.name
+                ? {selectedLevel: null}
+                : {selectedLevel: level}
+        })
+    }
 }
 
 export default setters;

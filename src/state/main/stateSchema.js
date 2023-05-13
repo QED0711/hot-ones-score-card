@@ -2,8 +2,9 @@
 const stateSchema = {
 
     players: [],
-    levels: []
+    levels: [],
 
+    selectedLevel: null
 }
 
 export default stateSchema;

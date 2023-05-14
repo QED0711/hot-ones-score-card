@@ -11,7 +11,7 @@ const setters = {
                         {
                             id: nanoid(),
                             name: playerName,
-                            levels: Array.from({ length: 10 }, () => ({ deductions: new Set(), score: null })),
+                            levels: Array.from({ length: 10 }, () => ({ deductions: new Array(), score: 0 })),
                         }
                     ]
             }
@@ -24,33 +24,37 @@ const setters = {
         })
     },
 
-    toggleSelectedLevel(level) {
+    toggleSelectedLevel(level, idx) {
         this.setState(prevState => {
             return prevState.selectedLevel?.name === level.name
-                ? { selectedLevel: null }
-                : { selectedLevel: level }
+                ? { selectedLevel: null, selectedLevelIndex: -1 }
+                : { selectedLevel: level, selectedLevelIndex: idx }
         })
     },
 
     togglePlayerDeduction(playerID, levelIdx, deduction) {
         this.setState(prevState => {
-            for (let player of prevState.players) {
+            const players = [...prevState.players];
+
+            for (let player of players) {
                 if (player.id === playerID) {
-                    player.levels[levelIdx].deductions.has(deduction)
-                        ? player.levels[levelIdx].deductions.delete(deduction)
-                        : player.levels[levelIdx].deductions.add(deduction)
+                    player.levels[levelIdx].deductions = player.levels[levelIdx].deductions.includes(deduction)
+                        ? player.levels[levelIdx].deductions.filter(d => d !== deduction)
+                        : [...player.levels[levelIdx].deductions, deduction]
                     break
                 }
             }
-            return { players: prevState.players }
+            return { players }
         })
     },
 
-    recordLevelScores(level) {
+    recordLevelScores() {
         this.setState(prevState => {
-            for (let player of prevState.players) {
-
+            const players = [...prevState.players];
+            for (let player of players) {
+                player.levels[prevState.selectedLevelIndex].score = prevState.selectedLevel.points - prevState.selectedLevel.points * player.levels[prevState.selectedLevelIndex].deductions.reduce((sum, n) => sum + n, 0)
             }
+            return {players}
         })
     }
 }

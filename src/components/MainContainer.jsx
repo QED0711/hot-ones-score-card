@@ -17,13 +17,13 @@ const renderPlayers = (players) => {
 
 export default function MainContainer() {
     const { state } = useSpiccatoState(mainManager, ["players", "levels"])
+    
     return (
         <div className="h-full w-full p-4">
             <NewPlayerForm />
             <LevelMenu />
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-4">
                 {renderPlayers(state.players)}
-
             </div>
         </div>
     )

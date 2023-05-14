@@ -7,7 +7,7 @@ import setters from './setters'
 import methods from './methods'
 
 
-const mainManager = new Spiccato(stateSchema, { id: "main" })
+const mainManager = new Spiccato(stateSchema, { id: "main", })
 
 mainManager.addCustomGetters(getters)
 mainManager.addCustomSetters(setters)

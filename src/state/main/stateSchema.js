@@ -4,7 +4,8 @@ const stateSchema = {
     players: [],
     levels: [],
 
-    selectedLevel: null
+    selectedLevel: null,
+    selectedLevelIndex: -1,
 }
 
 export default stateSchema;

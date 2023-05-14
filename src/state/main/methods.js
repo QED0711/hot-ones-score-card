@@ -1,7 +1,7 @@
+import levels from "../../config/levels";
 
 const methods = {
 
-    // your methods here...
 
 }
 

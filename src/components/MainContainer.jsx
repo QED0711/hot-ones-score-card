@@ -17,7 +17,6 @@ const renderPlayers = (players) => {
 
 export default function MainContainer() {
     const { state } = useSpiccatoState(mainManager, ["players", "levels"])
-    console.log(state)
     return (
         <div className="h-full w-full p-4">
             <NewPlayerForm />

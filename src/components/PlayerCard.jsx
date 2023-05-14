@@ -4,7 +4,15 @@ import { FiFlag } from 'react-icons/fi'
 
 import { getHexColor } from "../utilities/colors";
 
+
 export default function PlayerCard({ player }) {
+
+
+    // EVENTS
+    const handleDeductionClick = deduction => () => {
+        mainManager.setters.togglePlayerDeduction(player.id, 0, deduction)
+    }
+
     return (
         <div className="p-2 bg-gray-300 rounded-md shadow-sm shadow-gray-800">
             <h1 className="bg-gray-200 p-1 mb-1 rounded-sm text-gray-800 shadow-inner shadow-gray-400 font-bold">{player.name.toUpperCase()}</h1>
@@ -29,15 +37,24 @@ export default function PlayerCard({ player }) {
                 </div>
 
                 <div className="col-span-9 grid grid-cols-3 gap-2 text-center">
-                    <div className="bg-gray-100 rounded-md shadow-sm shadow-gray-500 hover:shadow-md hover:shadow-gray-800 cursor-pointer">
+                    <div 
+                        className="bg-gray-100 rounded-md shadow-sm shadow-gray-500 hover:shadow-md hover:shadow-gray-800 cursor-pointer"
+                        onClick={handleDeductionClick(0.2)}
+                        >
                         <img className="w-[2rem] mx-auto my-1" src="https://img.uxwing.com/wp-content/themes/uxwing/download/food-drinks-cooking/water-glass-color-icon.svg" />
                         - 20%
                     </div>
-                    <div className="bg-gray-100 rounded-md shadow-sm shadow-gray-500 hover:shadow-md hover:shadow-gray-800 cursor-pointer">
+                    <div 
+                        className="bg-gray-100 rounded-md shadow-sm shadow-gray-500 hover:shadow-md hover:shadow-gray-800 cursor-pointer"
+                        onClick={handleDeductionClick(0.3)}
+                        >
                         <img className="w-[2rem] mx-auto my-1" src="https://img.uxwing.com/wp-content/themes/uxwing/download/food-drinks-cooking/milk-glass-icon.svg" />
                         - 30%
                     </div>
-                    <div className="bg-gray-100 rounded-md shadow-sm shadow-gray-500 hover:shadow-md hover:shadow-gray-800 cursor-pointer">
+                    <div 
+                        className="bg-gray-100 rounded-md shadow-sm shadow-gray-500 hover:shadow-md hover:shadow-gray-800 cursor-pointer"
+                        onClick={handleDeductionClick(0.5)}
+                    >
                         <img className="w-[2rem] h-[3.2rem] mx-auto my-1" src="https://img.uxwing.com/wp-content/themes/uxwing/download/food-drinks-cooking/ice-cream-color-icon.svg" />
                         - 50%
                     </div>

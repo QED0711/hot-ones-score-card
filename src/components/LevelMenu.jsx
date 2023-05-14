@@ -9,17 +9,26 @@ import LevelCard from "./LevelCard"
 // RENDERER
 const renderLevels = (levels, selectedLevel) => {
     return levels.map((level, i) => (
-        <LevelCard key={i} index={i+1} level={level} selected={selectedLevel?.name === level.name} />
+        <LevelCard key={i} index={i + 1} level={level} selected={selectedLevel?.name === level.name} />
     ))
 }
 
-export default function LevelMenu(){
+export default function LevelMenu() {
     // STATE
-    const {state} = useSpiccatoState(mainManager, ["selectedLevel"]);
-
+    const { state } = useSpiccatoState(mainManager, ["selectedLevel"]);
+    console.log(state)
     return (
-        <div className="grid grid-cols-5 md:grid-cols-10 gap-2 my-2">
-            {renderLevels(levels, state.selectedLevel)}
-        </div>
+        <>
+            <div className="grid grid-cols-5 md:grid-cols-10 gap-2 my-2">
+                {renderLevels(levels, state.selectedLevel)}
+            </div>
+            <div>
+                <button 
+                    className='p-1 bg-gray-200 rounded-sm shadow-sm shadow-gray-800 hover:shadow-md hover:shadow-gray-800 cursor-pointer'
+                >
+                    Complete Round
+                </button>
+            </div>
+        </>
     )
 }

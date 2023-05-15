@@ -12,6 +12,7 @@ const setters = {
                             id: nanoid(),
                             name: playerName,
                             levels: Array.from({ length: 10 }, () => ({ deductions: new Array(), score: 0 })),
+                            forfeit: false
                         }
                     ]
             }
@@ -24,6 +25,17 @@ const setters = {
         })
     },
 
+    togglePlayerForfeit(playerID) {
+        this.setState(prevState => {
+            const players = prevState.players.map(player => (
+                player.id === playerID 
+                    ? {...player, forfeit: !player.forfeit}
+                    : player
+            ))
+            return {players}
+        })
+    },
+
     toggleSelectedLevel(level, idx) {
         this.setState(prevState => {
             return prevState.selectedLevel?.name === level.name
@@ -33,9 +45,10 @@ const setters = {
     },
 
     togglePlayerDeduction(playerID, levelIdx, deduction) {
+        if(levelIdx < 0) return;
         this.setState(prevState => {
             const players = [...prevState.players];
-
+            console.log(playerID, levelIdx, deduction)
             for (let player of players) {
                 if (player.id === playerID) {
                     player.levels[levelIdx].deductions = player.levels[levelIdx].deductions.includes(deduction)
@@ -50,11 +63,17 @@ const setters = {
 
     recordLevelScores() {
         this.setState(prevState => {
-            const players = [...prevState.players];
+            const levelIdx = prevState.selectedLevelIndex;
+            const completedLevels = prevState.completedLevels.includes(levelIdx) ? [...prevState.completedLevels] : [...prevState.completedLevels, levelIdx]
+            const players = prevState.players.map(player => ({...player})) // forces a state update because the individual player objects change
             for (let player of players) {
-                player.levels[prevState.selectedLevelIndex].score = prevState.selectedLevel.points - prevState.selectedLevel.points * player.levels[prevState.selectedLevelIndex].deductions.reduce((sum, n) => sum + n, 0)
+                if(player.forfeit) {
+                    player.levels[prevState.selectedLevelIndex].score = 0
+                } else {
+                    player.levels[prevState.selectedLevelIndex].score = prevState.selectedLevel.points - prevState.selectedLevel.points * player.levels[prevState.selectedLevelIndex].deductions.reduce((sum, n) => sum + n, 0)
+                }
             }
-            return {players}
+            return {players, completedLevels}
         })
     }
 }

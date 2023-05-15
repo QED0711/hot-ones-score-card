@@ -6,6 +6,7 @@ const stateSchema = {
 
     selectedLevel: null,
     selectedLevelIndex: -1,
+    completedLevels: [],
 }
 
 export default stateSchema;

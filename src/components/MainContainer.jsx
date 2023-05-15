@@ -10,7 +10,9 @@ import PlayerCard from "./PlayerCard"
 
 // RENDERERS
 const renderPlayers = (players) => {
-    return players.map(player => (
+    return players
+        .sort((p1, p2) => p2.levels.map(l => l.score).reduce((s, n) => s+n, 0) - p1.levels.map(l => l.score).reduce((s, n) => s+n, 0)) // sorts by score
+        .map(player => (
         <PlayerCard key={player.id} player={player} />
     ))
 }

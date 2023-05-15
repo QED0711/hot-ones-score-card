@@ -15,7 +15,7 @@ const renderLevels = (levels, selectedLevel) => {
 
 export default function LevelMenu() {
     // STATE
-    const { state } = useSpiccatoState(mainManager, ["selectedLevel"]);
+    const { state } = useSpiccatoState(mainManager, ["selectedLevel" ]);
     
     return (
         <>
@@ -28,7 +28,7 @@ export default function LevelMenu() {
                     disabled={!state.selectedLevel}
                     onClick={() => {mainManager.setters.recordLevelScores()}}
                 >
-                    Complete Round
+                    Record Scores
                 </button>
             </div>
         </>

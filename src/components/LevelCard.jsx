@@ -18,13 +18,13 @@ export default function LevelCard({level, index, selected}){
             onClick={() => {mainManager.setters.toggleSelectedLevel(level, index)}}
             style={{opacity: selected ? 1 : 0.3, }}
         >
-            <img src={level.image}  />
+            <img className='h-[5rem] md:h-3/4 mx-auto' src={level.image}  />
             <h3 className='m-0'>Level {index + 1}</h3>
             <h3 className='m-0'>{(readableNum(level.scoville))} sc.</h3>
             {
                 state.completedLevels.includes(index)
                     ? <FaPepperHot 
-                        className='absolute left-2 top-2 p-1 bg-gray-200 shadow-sm shadow-gray-500 rounded-full' 
+                        className='absolute right-2 top-2 p-1 bg-gray-200 shadow-sm shadow-gray-500 rounded-full' 
                         size={"1.5rem"}
                         style={{backgroundColor: getHexColor((index+1)/10)}}
                     />

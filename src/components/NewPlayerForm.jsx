@@ -22,18 +22,19 @@ export default function NewPlayerForm() {
     }
 
     return (
-        <form className="grid grid-cols-2 p-2 text-center bg-gray-300 rounded-md" onSubmit={handleSubmit}>
+        <form className="grid grid-cols-1 md:grid-cols-2 p-2 text-center bg-gray-300 rounded-md" onSubmit={handleSubmit}>
             <div>
                 <input
                     id="player-name"
-                    className="w-[20rem] px-1 mx-2 rounded-sm shadow-sm shadow-gray-700"
+                    className="w-[75%] px-1 mx-2 rounded-sm shadow-sm shadow-gray-700 text-center
+"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    placeholder="Add Player"
                 />
-                <input type="submit" value="Add Player" className="cursor-pointer" />
             </div>
-            
+            <input type="submit" className="hidden" /> 
             <button onClick={handleResetClick}>Reset</button>
         </form>
     )

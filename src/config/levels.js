@@ -58,6 +58,6 @@ export default [
         name: "Sauce 10",
         points: 7500,
         image: "https://cdn.shopify.com/s/files/1/2086/9287/products/apollo_3c3166e2-a0f5-4d2d-85e4-f7ac4b36f3ae.jpg?v=1674144172&width=680",
-        scoville: Infinity,
+        scoville: 2_500_000,
     },
 ]

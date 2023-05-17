@@ -13,7 +13,7 @@ if (window.location.pathname === "/reset") {
 
 const router = createBrowserRouter([
   { path: "/", element: <MainContainer /> },
-  { path: "/hey", element: <Hey /> },
+  { path: "/hey-sharon", element: <Hey /> },
 ])
 
 function App() {

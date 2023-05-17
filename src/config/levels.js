@@ -1,7 +1,7 @@
 export default [
     {
         name: "Sauce 1",
-        points: 2,
+        points: 10,
         image: "https://cdn.shopify.com/s/files/1/2086/9287/products/Hot-Ones-Classic-Chili-Maple-Hot-Sauce.jpg?v=1674144172&width=680",
         scoville: 160,
         description: ""

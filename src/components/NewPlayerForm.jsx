@@ -35,7 +35,12 @@ export default function NewPlayerForm() {
                 />
             </div>
             <input type="submit" className="hidden" /> 
-            <button onClick={handleResetClick}>Reset</button>
+            <button 
+                className="w-fit mx-auto px-4 bg-gray-400 rounded-sm shadow-sm shadow-gray-800 hover:shadow-md hover:shadow-gray-800"
+                onClick={handleResetClick}
+            >
+                Reset
+            </button>
         </form>
     )
 }
